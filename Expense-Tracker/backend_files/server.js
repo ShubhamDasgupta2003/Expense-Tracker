@@ -19,9 +19,9 @@ const db = mysql.createConnection({
 
 // API endpoint for form submission
 app.post('/submit-form', (req, res) => {
-    const {description,date} = req.body;
-    const sql = "INSERT INTO expense (description, date) VALUES (?, ?)";
-    db.query(sql, [description, date], (err, result) => {
+    const {description,date,selectedCategory} = req.body;
+    const sql = "INSERT INTO expense (description, date, cat_code) VALUES (?, ?, ?)";
+    db.query(sql, [description, date, selectedCategory], (err, result) => {
         if (err) {
             res.status(500).json({ error: "error"+ err.sqlMessage });
         } else {
@@ -38,7 +38,7 @@ app.get('/get-category',(req,res)=>{
             res.status(500).json({error:"error"+ err.sqlMessage});
         }
         else {
-            res.status(200).json({result});
+            res.status(200);
         }
     });
 

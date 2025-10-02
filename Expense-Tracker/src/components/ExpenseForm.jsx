@@ -7,6 +7,7 @@ const AddExpenseForm = () => {
     description: '',
     date: new Date().toISOString().slice(0, 10), // Default to today's date
   });
+  const [selectedCategory,setSelectedCategory] = useState('');
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -18,6 +19,15 @@ const AddExpenseForm = () => {
       ...prevData,
       [name]: value,
     }));
+  };
+
+  const handleSelectedCategoryChange=(e)=>{
+    setSelectedCategory(e.target.value);
+  }
+
+  const payload = {
+    ...formData,
+    selectedCategory,
   };
 
   // Handle the form submission
@@ -33,7 +43,7 @@ const AddExpenseForm = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(payload),
       });
 
       if (!response.ok) {
@@ -82,8 +92,13 @@ const AddExpenseForm = () => {
           onChange={handleChange}
           required
         />
-        <CatDropdown></CatDropdown>
+        <div>
+         <label htmlFor="category">Category:</label>
+        <CatDropdown selectedCategory={selectedCategory}
+        onCategoryChange={handleSelectedCategoryChange}></CatDropdown>
+        </div>
       </div>
+
       <button type="submit" disabled={loading}>
         {loading ? 'Adding...' : 'Add Expense'}
       </button>

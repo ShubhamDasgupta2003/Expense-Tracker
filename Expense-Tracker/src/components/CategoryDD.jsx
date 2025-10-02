@@ -1,15 +1,15 @@
 import { useEffect,useState } from "react";
 
-const categoryDropdown=()=>{
+const categoryDropdown=({selectedCategory,onCategoryChange})=>{
     const [category,setCategory] = useState([]);
-    const [selectedCategory,setSelectedCategory] = useState('');
+    // const [selectedCategory,setSelectedCategory] = useState('');
 
     useEffect(()=>{
         //Fetch data from api-endpoint
 
         fetch("http://localhost:3001/get-category")
         .then(response=>{
-            //Check for successfullu response
+            //Check for successfull response
             if(!response.ok)
             {
                 throw new Error('Network response was not ok: ${response.statusText}');
@@ -25,13 +25,9 @@ const categoryDropdown=()=>{
 
     },[])
 
-    const handleCategoryChange=(e)=>{
-        setSelectedCategory(e.target.value);
-    }
-
     return(
         <div>
-            <select name="" id="category-select" value={selectedCategory} onChange={handleCategoryChange}>
+            <select name="" id="categoryChoice" value={selectedCategory} onChange={onCategoryChange}>
                 <option value="">--Please choose an option--</option>
                 {category.map(cat=>(
                     <option key={cat.cat_code} value={cat.cat_code}>{cat.cat_desc}</option>
