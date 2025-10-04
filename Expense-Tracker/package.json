@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "start": "TZ=Asia/Calcutta node server.js",
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",

@@ -14,14 +14,15 @@ const db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: '',
-    database: 'expenses'
+    database: 'expenses',
+     dateStrings: true,
 });
 
 // API endpoint for form submission
 app.post('/submit-form', (req, res) => {
-    const {description,date,selectedCategory} = req.body;
-    const sql = "INSERT INTO expense (description, date, cat_code) VALUES (?, ?, ?)";
-    db.query(sql, [description, date, selectedCategory], (err, result) => {
+    const {description,date,selectedCategory,amount} = req.body;
+    const sql = "INSERT INTO expense (description, date, cat_code, amount) VALUES (?, ?, ?, ?)";
+    db.query(sql, [description, date, selectedCategory,amount], (err, result) => {
         if (err) {
             res.status(500).json({ error: "error"+ err.sqlMessage });
         } else {
@@ -38,11 +39,26 @@ app.get('/get-category',(req,res)=>{
             res.status(500).json({error:"error"+ err.sqlMessage});
         }
         else {
-            res.status(200);
+            res.status(200).json({result});
         }
     });
 
-})
+});
+
+//API end-point to fetch expenses
+
+app.get("/get-expense",(req,res)=>{
+    const sql = "SELECT * FROM expense";
+    db.query(sql,(err,result)=>{
+        if(err){
+            res.status(500).json({error:"error"+ err.sqlMessage});
+        }
+        else {
+            res.status(200).json({result});
+        }
+    })
+});
+
 app.listen(port, () => {
     console.log(`Backend server running on port ${port}`);
 });

@@ -6,6 +6,7 @@ const AddExpenseForm = () => {
   const [formData, setFormData] = useState({
     description: '',
     date: new Date().toISOString().slice(0, 10), // Default to today's date
+    amount: '',
   });
   const [selectedCategory,setSelectedCategory] = useState('');
 
@@ -58,6 +59,7 @@ const AddExpenseForm = () => {
       setFormData({
         description: '',
         date: new Date().toISOString().slice(0, 10),
+        amount: '',
       });
 
     } catch (err) {
@@ -69,10 +71,22 @@ const AddExpenseForm = () => {
   };
 
   return (
+    <div className='container'>
     <form onSubmit={handleSubmit}>
       <h2>Add New Expense</h2>
-      <div>
-        <label htmlFor="description">Description:</label>
+      <div className='row'>
+        <label htmlFor="amount">Amount</label>
+        <input
+          type="text"
+          id="amount"
+          name="amount"
+          value={formData.amount}
+          onChange={handleChange}
+          required
+        />
+      </div>
+      <div className='row'>
+        <label htmlFor="description">Description</label>
         <input
           type="text"
           id="description"
@@ -82,8 +96,8 @@ const AddExpenseForm = () => {
           required
         />
       </div>
-      <div>
-        <label htmlFor="date">Date:</label>
+      <div className='row'>
+        <label htmlFor="date">Date</label>
         <input
           type="date"
           id="date"
@@ -92,18 +106,18 @@ const AddExpenseForm = () => {
           onChange={handleChange}
           required
         />
-        <div>
-         <label htmlFor="category">Category:</label>
+      </div>
+        <div className='row'>
+         <label htmlFor="category">Category</label>
         <CatDropdown selectedCategory={selectedCategory}
         onCategoryChange={handleSelectedCategoryChange}></CatDropdown>
         </div>
-      </div>
-
-      <button type="submit" disabled={loading}>
+      <button className="btn" type="submit" disabled={loading}>
         {loading ? 'Adding...' : 'Add Expense'}
       </button>
       {error && <p style={{ color: 'red' }}>{error}</p>}
     </form>
+    </div>
   );
 };
 
