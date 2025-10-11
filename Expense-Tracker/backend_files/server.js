@@ -15,14 +15,14 @@ const db = mysql.createConnection({
     user: 'root',
     password: '',
     database: 'expenses',
-     dateStrings: true,
+    dateStrings: true,
 });
 
 // API endpoint for form submission
 app.post('/submit-form', (req, res) => {
-    const {description,date,selectedCategory,amount} = req.body;
-    const sql = "INSERT INTO expense (description, date, cat_code, amount) VALUES (?, ?, ?, ?)";
-    db.query(sql, [description, date, selectedCategory,amount], (err, result) => {
+    const {description,dateSelected,selectedCategory,amount,isWeekend} = req.body;
+    const sql = "INSERT INTO expense (description, date, cat_code, amount,is_weekend) VALUES (?, ?, ?, ?, ?)";
+    db.query(sql, [description, dateSelected, selectedCategory,amount,isWeekend], (err, result) => {
         if (err) {
             res.status(500).json({ error: "error"+ err.sqlMessage });
         } else {

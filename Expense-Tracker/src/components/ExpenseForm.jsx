@@ -5,13 +5,24 @@ const AddExpenseForm = () => {
   // State to hold the form input values for date and description
   const [formData, setFormData] = useState({
     description: '',
-    date: new Date().toISOString().slice(0, 10), // Default to today's date
     amount: '',
   });
   const [selectedCategory,setSelectedCategory] = useState('');
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [isActive,setIsActive] = useState(true);
+  const [isWeekend,setIsWeekend] = useState(new Date().getDay()===6 || new Date().getDay()===0 ? 1:0);
+  const [dateSelected,setdateSelected] = useState(new Date().toISOString().slice(0, 10));
+
+  //Handle is weekend field
+  const handleIsWeekend = (e)=>{
+    const newdateSelect = e.target.value
+    setdateSelected(newdateSelect);
+    const newDateObj = new Date(newdateSelect);
+    const weekend = (newDateObj.getDay()===6 || newDateObj.getDay()===0 ? 1:0);
+    setIsWeekend(weekend);
+  }
 
   // Handle changes to the input fields dynamically
   const handleChange = (e) => {
@@ -26,9 +37,15 @@ const AddExpenseForm = () => {
     setSelectedCategory(e.target.value);
   }
 
+  const toggleForm=()=>{
+    setIsActive(!isActive);
+  };
+
   const payload = {
     ...formData,
     selectedCategory,
+    dateSelected,
+    isWeekend
   };
 
   // Handle the form submission
@@ -58,10 +75,12 @@ const AddExpenseForm = () => {
       // Reset the form after successful submission
       setFormData({
         description: '',
-        date: new Date().toISOString().slice(0, 10),
         amount: '',
       });
 
+      setdateSelected(new Date().toISOString().slice(0, 10));
+      setIsWeekend(new Date().getDay()===6 || new Date().getDay()===0 ? 1:0);
+      
     } catch (err) {
       console.error('Error submitting form:', err);
       setError('Failed to add expense. Please try again.');
@@ -71,7 +90,7 @@ const AddExpenseForm = () => {
   };
 
   return (
-    <div className='container'>
+    <div className={isActive? 'container':'form-hide'}>
     <form onSubmit={handleSubmit}>
       <h2>Add New Expense</h2>
       <div className='row'>
@@ -102,8 +121,19 @@ const AddExpenseForm = () => {
           type="date"
           id="date"
           name="date"
-          value={formData.date}
-          onChange={handleChange}
+          value={dateSelected}
+          onChange={handleIsWeekend}
+          required
+        />
+      </div>
+      <div className='row'>
+        <label htmlFor="is_weekend">Weekend</label>
+        <input
+          type="number"
+          id="is_weekend"
+          name="is_weekend"
+          value={isWeekend}
+          onChange={handleIsWeekend}
           required
         />
       </div>
@@ -112,9 +142,14 @@ const AddExpenseForm = () => {
         <CatDropdown selectedCategory={selectedCategory}
         onCategoryChange={handleSelectedCategoryChange}></CatDropdown>
         </div>
-      <button className="btn" type="submit" disabled={loading}>
+        <div className="row"><button className="btn btn-green" type="submit" disabled={loading}>
         {loading ? 'Adding...' : 'Add Expense'}
       </button>
+      <button className='btn btn-red' onClick={toggleForm}>Cancel</button>
+      </div>
+      <div className="row">
+
+      </div>
       {error && <p style={{ color: 'red' }}>{error}</p>}
     </form>
     </div>

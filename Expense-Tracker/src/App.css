@@ -1,30 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Bitcount+Ink:wght@100..900&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Commissioner:wght@100..900&display=swap');
+
 body{
-  background-color: blanchedalmond;
+  margin: 0;
+  display: flex;
+  min-width: 320px;
+  min-height: 100vh;
+  background-image: linear-gradient(to bottom right, rgb(248, 237, 255), rgb(244, 215, 255),rgb(187, 242, 255));
 }
 
+.navbar
+{
+  display: flex;
+  border: 1px solid green;
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  justify-content: end;
+}
 #root {
-  max-width: 100%;
+  flex-direction: column;
+  /* align-items: center; */
+  justify-content: center;
+  border: 1px solid blue;
+  width: 100%;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 0px;
   text-align: center;
+  font-family: "Bitcount Ink", system-ui;
+  font-weight: 600;
+  display: flex;
+  
+}
+
+.btn
+{
+  padding: 7px;
+  border-radius: 5px;
+  border: 0px solid grey;
+  font-family: "Commissioner", sans-serif;
+  font-weight: 600;
+  color: white;
+}
+.btn-green
+{
+  background-color: green;
+}
+.btn-red
+{
+  background-color: rgb(255, 65, 65);
 }
 
 .container
 {
+  display: flex;
+  justify-content: center;
+  border: 1px solid red;
+}
+.container form
+{
   display: block;
   position: relative;
+  /* top: 50%; */
+  /* transform: translateY(-50%); */
   flex-direction: column;
-  /* justify-content: center;
-  align-items: center; */
-  padding: 17px;
-  background-color: rgb(150, 136, 112);
-  border: 1px solid rgb(139, 139, 139);
-   box-shadow: 10px 10px 10px 7px rgb(210, 210, 210);
+  width: 400px;
+  height: 300px;
+  background-color: white;
+  border: 0px;
+  border-radius: 5px;
+  box-shadow: 10px 10px 10px 5px rgb(155, 117, 186);
+}
+
+.container h2
+{
+  font-family: "Ubuntu", sans-serif;
+  font-size: large;
+  color: white;
+  margin-top: 0px;
+  background-color: rgb(39, 0, 86);
+  padding: 7px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.form-hide
+{
+  display: none;
 }
 .row
 {
   display: flex;
-  margin: 7px;
+  margin: 12px;
  justify-content: space-between;
   /* border: 1px solid red; */
 }
@@ -37,25 +105,44 @@ body{
   padding: 7px;
   text-align: justify;
   border: 1px solid rgb(210, 210, 210);
-  border-radius: 7px;
+  border-radius: 5px;
+  background-color: rgb(255, 255, 255);
 }
 
 .ExpenseTable thead th
 {
-  border: 2px double rgb(255, 109, 109);
+  background-color: rgb(39, 0, 86);
   padding: 9px;
+  color: white;
 }
 
 .ExpenseTable
 {
+  font-family: "Commissioner", sans-serif;
   border-collapse: collapse;
-  width: 100%;
+  width: 40%;
+  text-align: justify;
 }
 
 .ExpenseTable tr td
 {
+  font-weight: 400;
   padding: 7px;
-  border-right: 2px solid rgb(255, 109, 109);
-  border-left: 2px solid rgb(255, 109, 109);
-  border-bottom: 2px solid rgba(0, 21, 96, 0.568);
+}
+
+.ExpenseTable tr:nth-child(even)
+{
+  background-color: rgb(222, 222, 222);
+}
+.ExpenseTable tr:nth-child(odd)
+{
+  background-color: rgb(255, 255, 255);
+}
+
+.table-cont
+{
+  max-width: 100%;
+  border: 1px solid green;
+  display: flex;
+  justify-content: flex-end;
 }
