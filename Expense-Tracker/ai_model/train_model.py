@@ -22,13 +22,20 @@ def train_and_save_model():
             print("Please check if the data in 'amount' column is all numeric.")
             return
     
-    # During the training process, calculate the mean amount for each category
-    df_mean_amount = df.groupby('cat_code')['amount'].transform('mean')
-    df['amount_diff_from_cat_mean'] = df['amount'] - df_mean_amount
+    # Calculate category-specific statistics
+    df['cat_mean'] = df.groupby('cat_code')['amount'].transform('mean')
+    df['cat_std'] = df.groupby('cat_code')['amount'].transform('std').fillna(0)
+
+# Create new contextual features
+    df['amount_diff_from_cat_mean'] = df['amount'] - df['cat_mean']
+    df['amount_zscore'] = (df['amount'] - df['cat_mean']) / df['cat_std']
+    df['amount_zscore'] = df['amount_zscore'].replace([float('inf'), float('-inf')], 0)
+    df['amount_zscore'].fillna(0, inplace=True)
+
 
     # 1. Define the specific columns for each data type
     categorical_cols = ['cat_code']
-    numerical_cols = ['amount','is_weekend','amount_diff_from_cat_mean'] # Columns to keep as-is
+    numerical_cols = ['amount','is_weekend','amount_diff_from_cat_mean','amount_zscore'] # Columns to keep as-is
 
     # 2. Apply one-hot encoding to only the specified categorical columns
     df_encoded = pd.get_dummies(df, columns=categorical_cols, drop_first=True)
@@ -40,27 +47,12 @@ def train_and_save_model():
     df_final = df_encoded[feature_columns]
 
     # 4. Train the Isolation Forest model
-    # model = IsolationForest(random_state=42)
-    # model.fit(df_final)
-
-# Define a parameter grid to search
-    param_grid = {
-        'n_estimators': [100, 200, 300],
-        'contamination': [0.005, 0.01, 0.05, 'auto'], # Test different contamination levels
-        'max_samples': [128, 256, 512, 'auto']
-    }
-    
-    # Initialize the model and GridSearchCV
-    if_model = IsolationForest(random_state=42)
-    grid_search = GridSearchCV(if_model, param_grid, cv=5, scoring='f1', n_jobs=-1, verbose=1)
-
-    # Train the model with the best parameters
-    grid_search.fit(df_final)
-    best_model = grid_search.best_estimator_
+    model = IsolationForest(random_state=42)
+    model.fit(df_final)
 
     # 5. Save the model and feature columns
     model_data = {
-        'model': best_model,
+        'model': model,
         'feature_columns': feature_columns
     }
     joblib.dump(model_data, 'isolation_forest_model.joblib')
