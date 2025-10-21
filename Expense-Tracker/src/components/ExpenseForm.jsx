@@ -136,6 +136,7 @@ const AddExpenseForm = () => {
           onChange={handleIsWeekend}
           required
         />
+
       </div>
         <div className='row'>
          <label htmlFor="category">Category</label>
