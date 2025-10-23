@@ -11,7 +11,7 @@ def train_and_save_model():
         FileNotFoundError: If 'expenses.csv' is not found.
     """
     try:
-        df = pd.read_csv('expense.csv', usecols=['cat_code', 'amount', 'is_weekend'], dtype={'cat_code': 'category', 'amount': float, 'is_weekend': int})
+        df = pd.read_csv('expense.csv', usecols=['cat_code', 'amount'], dtype={'cat_code': 'category', 'amount': float})
         print("Loaded data from expenses.csv")
     except FileNotFoundError:
         print("Error: 'expenses.csv' not found.")
@@ -35,7 +35,7 @@ def train_and_save_model():
 
     # 1. Define the specific columns for each data type
     categorical_cols = ['cat_code']
-    numerical_cols = ['amount','is_weekend','amount_diff_from_cat_mean','amount_zscore'] # Columns to keep as-is
+    numerical_cols = ['amount','amount_diff_from_cat_mean','amount_zscore'] # Columns to keep as-is
 
     # 2. Apply one-hot encoding to only the specified categorical columns
     df_encoded = pd.get_dummies(df, columns=categorical_cols, drop_first=True)

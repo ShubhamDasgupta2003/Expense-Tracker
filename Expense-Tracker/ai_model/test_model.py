@@ -34,13 +34,14 @@ if __name__ == '__main__':
     # Define some new dummy data for testing
     # This data includes a regular entry and a potential anomaly
     new_test_data = pd.DataFrame([
-        ['GROC', 75.00, 0],    # Normal entry
-        ['FOOD', 60.00, 1],     # Normal entry
-        ['FOOD', 5000.00, 0],   # Anomalous amount
-        ['TRVL', 250.00, 1],    # Normal entry
-        ['TEA',450.00,0],
+        ['GROC', 7500.00],    # Normal entry
+        ['FOOD', 60.00],     # Normal entry
+        ['FOOD', 5000.00],   # Anomalous amount
+        ['TRVL', 1000.00],    # Normal entry
+        ['TEA',10.00],
+        ['MOBRC',350.00],
         # ['SALARY', 1000000.00, 0],   # Anomalous category not seen in training
-    ], columns=['cat_code', 'amount', 'is_weekend'])
+    ], columns=['cat_code', 'amount'])
     
     # Predict and display the results
     results = predict_anomalies_with_model(new_test_data)
