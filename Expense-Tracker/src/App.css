@@ -7,7 +7,7 @@ body{
   display: flex;
   min-width: 320px;
   min-height: 100vh;
-  background-image: linear-gradient(to bottom right, rgb(248, 237, 255), rgb(244, 215, 255),rgb(187, 242, 255));
+  /* background-image: linear-gradient(to bottom right, rgb(248, 237, 255), rgb(244, 215, 255),rgb(187, 242, 255)); */
 }
 
 .navbar

@@ -3,7 +3,7 @@ from sklearn.ensemble import IsolationForest
 import joblib
 from sklearn.model_selection import GridSearchCV
 from sklearn.neighbors import LocalOutlierFactor
-from sklearn.svm import OneClassSVM
+
 
 def train_and_save_model():
     """
@@ -58,6 +58,7 @@ def train_and_save_model():
         'model': model,
         'feature_columns': feature_columns
     }
+
     joblib.dump(model_data, 'isolation_forest_model.joblib')
     print("Isolation Forest model and feature columns saved to isolation_forest_model.joblib")
     df_final.to_csv('final_dataframe.csv')
@@ -68,4 +69,6 @@ if __name__ == '__main__':
         train_and_save_model()
     except FileNotFoundError:
         print("Model training failed. Please ensure 'expenses.csv' exists.")
+
+
 

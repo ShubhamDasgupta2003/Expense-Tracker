@@ -11,8 +11,7 @@ def train_and_save_model_rf_fixed():
     Trains a Random Forest Classifier with corrected feature engineering to avoid data leakage.
     """
     try:
-        df = pd.read_csv('expense.csv', usecols=['cat_code', 'amount', 'is_anomaly'], 
-                         dtype={'cat_code': 'category', 'amount': float, 'is_anomaly': int})
+        df = pd.read_csv('expense.csv', usecols=['cat_code', 'amount', 'is_anomaly'], dtype={'cat_code': 'category', 'amount': float, 'is_anomaly': int})
         print("Loaded data from expenses.csv")
     except FileNotFoundError:
         print("Error: 'expenses.csv' not found. Make sure it exists and contains 'is_anomaly' column.")

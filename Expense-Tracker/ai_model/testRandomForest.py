@@ -61,12 +61,14 @@ def test_model_on_new_data(new_data_list):
 if __name__ == '__main__':
     # Make sure to run train_and_save_model_rf_fixed() first
     random_new_expenses = [
-        {'cat_code': 'TRVL', 'amount': 641.0}, # The specific expense you are testing
-        {'cat_code': 'TRVL', 'amount': 1000.0},
+        {'cat_code': 'TRVL', 'amount': 500.0}, # The specific expense you are testing
+        {'cat_code': 'TRVL', 'amount': 700.0},
         {'cat_code': 'FOOD', 'amount': 650.0},
-        {'cat_code': 'MOBRC', 'amount': 240.00},
-        {'cat_code': 'TEA', 'amount': 13.00},
-        {'cat_code': 'GROC', 'amount': 2800.00}
+        {'cat_code': 'MOBRC', 'amount': 299.00},
+        {'cat_code': 'TEA', 'amount': 10.00},
+        {'cat_code': 'GROC', 'amount': 2000.00}
     ]
     
     test_model_on_new_data(random_new_expenses)
+
+AND(ProductCode_CHOICE="Admitted",EffectiveDate_DATE>= DATE(2023,02,01),AND(RiskStateRO_TXT !="AL", RiskStateRO_TXT !="AK",RiskStateRO_TXT !="CA",RiskStateRO_TXT !="CZ",RiskStateRO_TXT !="GU",RiskStateRO_TXT !="LA",RiskStateRO_TXT !="MI",RiskStateRO_TXT !="MS",RiskStateRO_TXT !="NJ",RiskStateRO_TXT !="PR",RiskStateRO_TXT !="TX",RiskStateRO_TXT !="VI"))

@@ -1,0 +1,74 @@
+.container
+{
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    margin: 15px;
+    align-items: start;
+}
+
+.query-container
+{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 17px;
+    box-shadow: 7px 7px 5px rgb(210, 164, 255);
+}
+
+.query-container input
+{
+    width: 90%;
+    height: 25px;
+    border: 2px solid rgb(207, 104, 255);
+    border-right: none;
+    border-top-left-radius:8px;
+    border-bottom-left-radius:8px;
+    padding: 7px;
+}
+.query-container button
+{
+    width: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-image: linear-gradient(to bottom right, rgb(248, 237, 255), rgb(244, 215, 255),rgb(187, 242, 255)); */
+     box-shadow: 7px 7px 5px rgb(210, 164, 255);
+}
+
+.answer-cont
+{
+    width: 85%;
+    padding: 7px;
+}
+.animated-gradient-button {
+  font-size: 15px;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-top-right-radius:8px;
+  border-bottom-right-radius:8px;
+
+  /* 1. Define a large background with multiple colors */
+  background: linear-gradient(-45deg, #52eee1, #9d3ce7, #23a6d5, #23d5ab);
+  
+  /* 2. Make the background much larger than the element (e.g., 400% width and height) */
+  background-size: 400% 400%;
+  
+  /* 3. Apply the infinite animation */
+  animation: gradient-shift 9s ease infinite; 
+}
+
+/* Define the keyframes for the animation */
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%; /* Start position */
+  }
+  50% {
+    background-position: 100% 50%; /* Middle position (shifts across) */
+  }
+  100% {
+    background-position: 0% 50%; /* Return to start position for seamless loop */
+  }
+}
+
