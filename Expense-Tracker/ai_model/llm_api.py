@@ -4,7 +4,7 @@ import json
 url = "http://localhost:11434/api/generate"
 payload = {
     "model": "llama3",
-    "prompt": "3 Latest CASIO analog automatic watches released in 2025 for men"
+    "prompt": "List 5 locations in Hyderabad to get 1BHK flats for rent under Rs. 15000"
 }
 response = requests.post(url, json=payload, stream=True)
 for line in response.iter_lines():

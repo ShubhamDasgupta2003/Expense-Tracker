@@ -5,6 +5,7 @@ import Analyze from './pages/analyze'
 import FileUpload from './components/FileUpload'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import AddExpense from './pages/addExpense'
+import Metrics from './pages/metrics'
 
 function App() {
 
@@ -15,6 +16,7 @@ function App() {
       <Routes>
         <Route path="/analyze" element={<Analyze/>}/>
         <Route path="/addExpense" element={<AddExpense/>}/>
+        <Route path="/metrics" element={<Metrics/>} />
       </Routes>
       </BrowserRouter>
       

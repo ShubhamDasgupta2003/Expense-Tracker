@@ -1,0 +1,134 @@
+
+.container
+{
+    /* border: 1px solid red; */
+    min-height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: flex-start;
+    position: relative;
+    top: 35px;
+}
+
+.row
+{
+    display: flex;
+    flex-direction: column;
+    /* border: 1px solid blue; */
+    justify-content: space-between;
+    height: max-content;
+    width: fit-content;
+    padding: 10px;
+}
+
+
+.metrics-cont
+{
+    display: flex;
+    flex-direction: column;
+    /* border: 1px solid green; */
+    background-color: rgb(255, 255, 255);
+    box-shadow: 5px 5px 5px rgb(121, 121, 121);
+    border-radius: 8px;
+    padding: 20px;
+    margin: 5px;
+    width: max-content;
+    font-size: x-small;
+    font-weight: 200;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.chart-cont
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 5px;
+    /* margin: 5px; */
+    width: max-content;
+    font-size: x-small;
+    font-weight: 200;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.filter-navbar
+{
+    /* border: 1px solid rgb(169, 0, 166); */
+    width: 180px;
+    background-color: rgb(255, 255, 255);
+    padding: 12px;
+}
+
+#answer-box
+{
+    padding: 10px;
+    height: 400px;
+    width: 230px;
+    text-align: justify;
+    font-size: medium;
+    overflow-y: auto;
+    overflow-x: hidden;
+    font-weight: 300;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 5px 5px 5px rgb(174, 174, 174);
+    white-space: pre-wrap;      /* Preserves spaces and wraps text */
+    overflow-wrap: break-word;
+    position: fixed;
+    bottom: 20px;
+    right: 50px;
+    font-size: 0.8rem;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 15px;
+}
+
+.agent-thumbnail
+{
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    z-index: 20;
+    border: none;
+    cursor: pointer;
+    border-radius: 100%;
+    background: #e8fcf3;
+background: radial-gradient(circle, rgb(13, 225, 130) 10%, rgb(180, 89, 255) 57%, rgb(93, 96, 255) 100%);
+  /* 1. Define a large background with multiple colors */
+  /* background: linear-gradient(-45deg, #00524b, #4d1478, #23a6d5, #17006b); */
+    background-size: 400% 400%;
+  /* 3. Apply the infinite animation */
+  animation: gradient-shift 5.5s ease infinite; 
+}
+
+
+
+/* Define the keyframes for the animation */
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%; /* Start position */
+  }
+  25% {
+    background-position: 100% 50%; /* Middle position (shifts across) */
+  }
+  50%{
+    background-position: 50% 80%;
+  }
+  100% {
+    background-position: 0% 50%; /* Return to start position for seamless loop */
+  }
+}
+
+.ansBoxHide
+{
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.5s ease-in,opacity 0.75s ease-in-out;
+}
+.ansBoxShow
+{
+  max-height: 400px; /* Set to a value large enough to fit content */
+  overflow: hidden;
+  transition: max-height 0.5s ease-in;
+}

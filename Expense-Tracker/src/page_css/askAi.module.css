@@ -50,7 +50,7 @@
   border-bottom-right-radius:8px;
 
   /* 1. Define a large background with multiple colors */
-  background: linear-gradient(-45deg, #52eee1, #9d3ce7, #23a6d5, #23d5ab);
+  background: linear-gradient(-45deg, #00524b, #4d1478, #23a6d5, #17006b);
   
   /* 2. Make the background much larger than the element (e.g., 400% width and height) */
   background-size: 400% 400%;
@@ -71,4 +71,5 @@
     background-position: 0% 50%; /* Return to start position for seamless loop */
   }
 }
+
 

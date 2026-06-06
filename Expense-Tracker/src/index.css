@@ -1,0 +1,9 @@
+body{
+  background: #b8ebfc;
+background: radial-gradient(circle, rgba(184, 235, 252, 1) 10%, rgba(217, 255, 235, 1) 57%, rgba(255, 224, 242, 1) 100%);
+  min-height: 100vh;
+    background-attachment: fixed; 
+    background-size: cover;
+    background-repeat: repeat;
+    overflow-x: hidden;
+}
